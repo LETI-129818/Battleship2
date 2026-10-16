@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import javax.swing.SwingUtilities;
+import java.awt.GraphicsEnvironment;
 import java.util.*;
 
 public class Game implements IGame
@@ -41,10 +42,15 @@ public class Game implements IGame
 
 		printBoardFrame(map);
 
-		// Atualiza a janela gráfica com o estado atual do mapa
-		SwingUtilities.invokeLater(() -> {
-			BoardView.getInstance().updateFromMap(map);
-		});
+		// Atualiza a interface gráfica apenas se existir ambiente gráfico disponível
+		if (!GraphicsEnvironment.isHeadless()) {
+			SwingUtilities.invokeLater(() -> {
+				BoardView view = BoardView.getInstance();
+				if (view != null) {
+					view.updateFromMap(map);
+				}
+			});
+		}
 
 		if (showLegend) {
 			System.out.println("          LEGENDA");
@@ -352,8 +358,6 @@ public class Game implements IGame
 		}
 
 		Move move = new Move(moveNumber, shots, shotResults);
-
-//     System.out.println(move);
 
 		move.processEnemyFire(true);
 

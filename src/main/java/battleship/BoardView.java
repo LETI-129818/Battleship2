@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 
 public class BoardView extends JFrame {
@@ -21,6 +22,10 @@ public class BoardView extends JFrame {
     private static BoardView instance;
 
     public static BoardView getInstance() {
+        // Se estiver num ambiente headless (ex: GitHub Actions), não instancia janelas
+        if (GraphicsEnvironment.isHeadless()) {
+            return null;
+        }
         if (instance == null) {
             instance = new BoardView();
         }
@@ -35,7 +40,7 @@ public class BoardView extends JFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Grelha 11x11 (cabeçalhos A-J e 1-10 + grelha 10x10)
+        // Grelha 11x11 (cabeçalhos A-J e 1-10 + grelha de jogo 10x10)
         JPanel boardPanel = new JPanel(new GridLayout(SIZE + 1, SIZE + 1, 3, 3));
         boardPanel.setBackground(new Color(25, 25, 25));
 
@@ -50,7 +55,7 @@ public class BoardView extends JFrame {
             boardPanel.add(lblCol);
         }
 
-        // Construção da grelha de botões
+        // Construção das linhas com identificador de A a J e respetivos botões
         for (int r = 0; r < SIZE; r++) {
             JLabel lblRow = new JLabel(ROWS[r], SwingConstants.CENTER);
             lblRow.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -59,7 +64,7 @@ public class BoardView extends JFrame {
 
             for (int c = 0; c < SIZE; c++) {
                 JButton cell = new JButton();
-                cell.setEnabled(false); // Apenas para visualização
+                cell.setEnabled(false); // Apenas visualização
                 cell.setFocusable(false);
                 cell.setFont(new Font("SansSerif", Font.BOLD, 12));
                 cell.setBackground(new Color(35, 45, 60)); // Água por explorar
@@ -72,41 +77,47 @@ public class BoardView extends JFrame {
     }
 
     /**
-     * Atualiza todas as células com base na matriz do Game.java
+     * Atualiza todas as células com base na matriz char[][] map
      */
     public void updateFromMap(char[][] map) {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
                 char symbol = map[r][c];
                 JButton btn = gridButtons[r][c];
 
-                // Identifica os símbolos desenhados na matriz map[][]
-                if (symbol == '*' || symbol == 'X') {
-                    // Tiro certeiro num navio
-                    btn.setBackground(new Color(211, 47, 47)); // Vermelho
-                    btn.setText("X");
-                    btn.setForeground(Color.WHITE);
-                } else if (symbol == 'o' || symbol == 'O' || symbol == '~') {
-                    // Tiro na água
-                    btn.setBackground(new Color(30, 136, 229)); // Azul
-                    btn.setText("~");
-                    btn.setForeground(Color.WHITE);
-                } else if (symbol == '#' || symbol == 'N') {
-                    // Navio visível
-                    btn.setBackground(new Color(76, 175, 80)); // Verde
-                    btn.setText("#");
-                    btn.setForeground(Color.WHITE);
-                } else if (symbol == '.') {
-                    // Posição adjacente a navio
-                    btn.setBackground(new Color(55, 71, 79)); // Cinzento escuro
-                    btn.setText("");
-                } else {
-                    // Água por explorar (espaço vazio)
-                    btn.setBackground(new Color(35, 45, 60)); // Azul escuro
-                    btn.setText("");
+                switch (symbol) {
+                    case '*': // Tiro certeiro
+                        btn.setBackground(new Color(211, 47, 47)); // Vermelho
+                        btn.setText("X");
+                        btn.setForeground(Color.WHITE);
+                        break;
+                    case 'o': // Tiro na água
+                        btn.setBackground(new Color(30, 136, 229)); // Azul
+                        btn.setText("~");
+                        btn.setForeground(Color.WHITE);
+                        break;
+                    case '#': // Navio visível
+                        btn.setBackground(new Color(76, 175, 80)); // Verde
+                        btn.setText("#");
+                        btn.setForeground(Color.WHITE);
+                        break;
+                    case '-': // Adjacente a navio afundado
+                        btn.setBackground(new Color(55, 71, 79)); // Cinzento escuro
+                        btn.setText("");
+                        break;
+                    case '.': // Água por explorar
+                    default:
+                        btn.setBackground(new Color(35, 45, 60)); // Azul escuro
+                        btn.setText("");
+                        break;
                 }
             }
         }
+
         if (!isVisible()) {
             setVisible(true);
         }
