@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.SwingUtilities;
 import java.awt.GraphicsEnvironment;
 import java.util.*;
@@ -59,6 +62,8 @@ public class Game implements IGame
 		}
 		System.out.println();
 	}
+
+
 
 	private static void printShips(IFleet fleet, char[][] map) {
 		for (IShip ship : fleet.getShips()) {
@@ -156,6 +161,22 @@ public class Game implements IGame
 
 		// Retornar o JSON
 		return jsonString;
+	}
+
+	/**
+	 * Guarda a string JSON das jogadas num ficheiro de texto (jogadas.json).
+	 *
+	 * @param jsonString A string JSON com os dados das jogadas.
+	 */
+	public static void saveJsonToFile(String jsonString) {
+		File file = new File("jogadas.json");
+		try (FileWriter writer = new FileWriter(file, true)) { // 'true' para acrescentar ao ficheiro existente
+			writer.write(jsonString);
+			writer.write(System.lineSeparator());
+			System.out.println("Jogada gravada em ficheiro com sucesso!");
+		} catch (IOException e) {
+			System.err.println("Erro ao guardar jogada no ficheiro: " + e.getMessage());
+		}
 	}
 
 	//------------------------------------------------------------------
@@ -276,6 +297,9 @@ public class Game implements IGame
 
 		this.fireShots(shots);
 
+		String json = Game.jsonShots(shots);
+		saveJsonToFile(json);
+
 		return Game.jsonShots(shots);
 	}
 
@@ -326,6 +350,9 @@ public class Game implements IGame
 		}
 
 		this.fireShots(shots);
+
+		String json = Game.jsonShots(shots);
+		saveJsonToFile(json);
 
 		return Game.jsonShots(shots);
 	}
