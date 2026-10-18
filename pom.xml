@@ -115,12 +115,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-java-commons-test</artifactId>
 			<version>${allure.version}</version>
