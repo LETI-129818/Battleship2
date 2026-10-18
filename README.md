@@ -149,3 +149,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 **Maintained by:** [@britoeabreu](https://github.com/britoeabreu)  
 *Created for the Software Engineering students at ISCTE-IUL.*
+
+https://youtu.be/qXBSlr2SM24
+https://youtu.be/J7IYDGamVSo
+
