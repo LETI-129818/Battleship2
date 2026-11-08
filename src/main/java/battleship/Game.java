@@ -500,11 +500,47 @@ public class Game implements IGame
 		System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
 		System.out.println("+--------------------------------------------------------------+");
 	}
+
+	public void longMethodViolationTest() {
+		int a = 1;
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a++);
+		System.out.println(a);
+=======
 	private final StopWatch stopWatch = StopWatch.createStarted();
 	private boolean scoreRecorded = false;
 	private String playerName = System.getProperty("user.name");
 
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
+
 	}
 }
