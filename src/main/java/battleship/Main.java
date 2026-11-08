@@ -16,4 +16,6 @@ public class Main
 
 		Tasks.menu();
     }
+	public static void Calcular_Pontos() {
+	}
 }
