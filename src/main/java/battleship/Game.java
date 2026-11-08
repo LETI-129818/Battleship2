@@ -281,7 +281,7 @@ public class Game implements IGame
 	 *                                  incorrectly formatted, or do not match the
 	 *                                  required number of shots (NUMBER_SHOTS).
 	 */
-	public String readEnemyFire(Scanner in) {
+	public void readEnemyFire(Scanner in) {
 
 		assert in != null;
 
@@ -316,7 +316,7 @@ public class Game implements IGame
 
 		this.fireShots(shots);
 
-		return Game.jsonShots(shots);
+		Game.jsonShots(shots);
 	}
 
 	/**

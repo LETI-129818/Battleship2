@@ -22,7 +22,6 @@ public interface IGame
 	 * Reads the result of an enemy firing action from input and interprets it.
 	 *
 	 * @param in the {@code Scanner} to read the input from, which provides the details of the enemy fire
-	 * @return a {@code String} describing the outcome of the enemy fire, such as a hit, a miss, or other results
 	 */
 	String readEnemyFire(Scanner in);
 

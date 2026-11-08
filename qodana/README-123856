@@ -1,0 +1,15 @@
+Campo	                     Valor
+Code Smell	              Large Class
+Inspeção IntelliJ	Class with too many methods
+Inspection ID	           MethodCount
+Métrica	            NOM (Number of Methods)
+Limite predefinido	        20 métodos
+Limite escolhido	        15 métodos
+Limitações	            Não avalia diretamente TCC, ATFD ou as responsabilidades da classe
+
+
+Cheiro (Fowler)	        Inspeção no IDE	        ID da inspeção	        Métrica / limiar	        Limitações
+Large Class 	  Class with too many methods	  MethodCount	         NOM / 15 métodos	  Não considera TCC nem ATFD;
+                                                                                              utiliza um limite absoluto
+
+Large Class	        Overly complex class	    ClassComplexity          WMC / 80 Ciclos      Não avalia diretamente TCC nem ATFD
