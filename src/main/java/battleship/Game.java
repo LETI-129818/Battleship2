@@ -500,11 +500,8 @@ public class Game implements IGame
 		System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
 		System.out.println("+--------------------------------------------------------------+");
 	}
-	private final StopWatch stopWatch = StopWatch.createStarted();
-	private boolean scoreRecorded = false;
-	private String playerName = System.getProperty("user.name");
-
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
+		public void Calcular_Pontos_Jogo() {
+			int pontuacaoBase = 100;
+			System.out.println("Pontuacao calculada: " + pontuacaoBase);
+		}
 }
