@@ -1,11 +1,7 @@
 
-# Qodana configuration - Feature Envy
-
 version: "1.0"
 
+linter: jetbrains/qodana-jvm-community:2026.2
+
 profile:
-  path: .qodana/profiles/profile-129818.yaml
-
-projectJDK: "21"
-
-linter: jetbrains/qodana-jvm:2026.2
+  name: qodana.starter
