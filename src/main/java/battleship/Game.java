@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import org.apache.commons.lang3.time.StopWatch;
+import java.util.concurrent.TimeUnit;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -391,6 +394,15 @@ public class Game implements IGame
 		alienMoves.add(move);
 
 		moveNumber++;
+		if (getRemainingShips() == 0 && !scoreRecorded) {
+			scoreRecorded = true;
+			stopWatch.stop();
+			new Scoreboard().add(playerName,
+					alienMoves.size(),
+					alienMoves.size() * NUMBER_SHOTS,
+					stopWatch.getTime(TimeUnit.SECONDS));
+			System.out.println("Resultado registado no scoreboard!");
+}
 	}
 
 	/**
