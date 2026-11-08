@@ -1,4 +1,4 @@
-# 113183 - Dragos <Apelido>
+# 113183 - Dragos Ariton
 version: "1.0"
 linter: jetbrains/qodana-jvm-community:2026.2
 projectJDK: "21"
