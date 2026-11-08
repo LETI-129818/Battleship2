@@ -19,4 +19,5 @@ public class LargeClassTest {
     public void method15() {}
     public void method16() {}
     public void method17() {}
+    public void method18() {}
 }
