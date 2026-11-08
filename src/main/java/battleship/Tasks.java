@@ -33,6 +33,11 @@ public class Tasks {
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
 	private static final String PDF = "pdf";
+	private static final String SCOREBOARD = "scoreboard";
+	private static final String JOGADOR = "jogador";
+
+	/** Nome com que o resultado fica registado no scoreboard. */
+	private static String playerName = System.getProperty("user.name");
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -49,7 +54,7 @@ public class Tasks {
 		while (!command.equals(DESISTIR)) {
 
 			switch (command) {
-				case GERAFROTA:
+				/*case GERAFROTA:
 					myFleet = Fleet.createRandom();
 					game = new Game(myFleet);
 					game.printMyBoard(false, true);
@@ -57,6 +62,16 @@ public class Tasks {
 				case LEFROTA:
 					myFleet = buildFleet(in);
 					game = new Game(myFleet);
+					game.printMyBoard(false, true);
+					break;*/
+				case GERAFROTA:
+					myFleet = Fleet.createRandom();
+					game = newGame(myFleet);
+					game.printMyBoard(false, true);
+					break;
+				case LEFROTA:
+					myFleet = buildFleet(in);
+					game = newGame(myFleet);
 					game.printMyBoard(false, true);
 					break;
 				case STATUS:
@@ -105,6 +120,13 @@ public class Tasks {
                 case AJUDA:
                     menuHelp();
                     break;
+				case SCOREBOARD:
+					new Scoreboard().print(10);
+					break;
+				case JOGADOR:
+					playerName = in.next();
+					System.out.println("Jogador definido: " + playerName);
+					break;
 				case PDF:
 					// Exemplo de histórico (substitua pela lista real de jogadas do seu jogo se já a tiver estruturada)
 					java.util.List<String> historicoExemplo = java.util.List.of(
@@ -125,6 +147,13 @@ public class Tasks {
 		System.out.println(GOODBYE_MESSAGE);
 	}
 
+	/** Cria um jogo novo e associa-lhe o nome do jogador atual. */
+	private static Game newGame(IFleet fleet) {
+		Game g = new Game(fleet);
+		g.setPlayerName(playerName);
+		return g;
+	}
+
 	/**
 	 * This function provides help information about the menu commands.
 	 */
@@ -139,6 +168,8 @@ public class Tasks {
 		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
 		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
 		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
+		System.out.println("- " + JOGADOR + " <nome>: Define o nome do jogador para o scoreboard.");
+		System.out.println("- " + SCOREBOARD + ": Mostra os 10 melhores jogos registados.");
 		System.out.println("===============================================================");
 		System.out.println("- " + PDF + ": Exporta o historico de jogadas para um ficheiro PDF.");
 	}
