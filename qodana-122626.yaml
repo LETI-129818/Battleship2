@@ -1,0 +1,9 @@
+# 122626 Jorge Fernandes
+version: "1.0"
+linter: jetbrains/qodana-jvm-community:2026.2
+projectJDK: "17" # Confirma a versão do Java configurada no teu pom.xml (ex.: 17 ou 21)
+profile:
+  path: qodana/profiles/profile-122626.yaml
+failureConditions:
+  severityThresholds:
+    any: 0
