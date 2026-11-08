@@ -1,15 +1,17 @@
-profile:
-  base:
-    name: empty
-  inspections:
-    - inspection: MethodCount
-      enabled: true
-      options:
-        m_limit: 15
-        ignoreGettersAndSetters: false
-        ignoreOverridingMethods: false
 
-    - inspection: ClassComplexity
-      enabled: true
-      options:
-        m_limit: 47
+# 123856 - Tiago Vaz
+name: "Large Class 123856"
+baseProfile: empty
+
+inspections:
+  - inspection: MethodCount
+    enabled: true
+    options:
+      m_limit: 15
+      ignoreGettersAndSetters: false
+      ignoreOverridingMethods: false
+
+  - inspection: ClassComplexity
+    enabled: true
+    options:
+      m_limit: 47
