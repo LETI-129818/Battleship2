@@ -22,3 +22,5 @@ jobs:
           args: --config qodana-113183.yaml
           use-annotations: true
           post-pr-comment: true
+          upload-result: true
+          pr-mode: ${{ github.event_name == 'pull_request' }}

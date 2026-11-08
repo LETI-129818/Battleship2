@@ -1,7 +1,6 @@
-# 113183 - Dragos <Apelido>
-profile:
-  base:
-    name: empty
+# 113183 - Dragos Ariton
+name: "Long Parameter List 113183"
+baseProfile: empty
 inspections:
   - inspection: ParametersPerMethod
     enabled: true
