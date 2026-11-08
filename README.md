@@ -149,3 +149,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 **Maintained by:** [@britoeabreu](https://github.com/britoeabreu)  
 *Created for the Software Engineering students at ISCTE-IUL.*
+
+Playing vs AI - https://youtu.be/qXBSlr2SM24
+
+Features Showcase and game demonstration - https://youtu.be/J7IYDGamVSo
+
