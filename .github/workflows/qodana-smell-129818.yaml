@@ -1,5 +1,5 @@
 # 129818 - Inês Aleixo
-name: Qodana smell gate Duplicated Code
+name: Qodana smell gate 129818
 
 on:
   push:
