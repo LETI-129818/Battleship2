@@ -1,3 +1,4 @@
+
 # 129818 - Inês Aleixo
 name: Qodana smell gate 129818
 
@@ -21,6 +22,21 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
+
+      - name: Verify Qodana configuration
+        run: |
+          echo "=== ROOT ==="
+          pwd
+          ls -la
+
+          echo "=== QODANA YAML ==="
+          cat qodana-129818.yaml
+
+          echo "=== CUSTOM PROFILE ==="
+          cat .qodana/profiles/profile-129818.yaml
+
+          echo "=== TRACKED FILES ==="
+          git ls-files | grep -E 'qodana-129818.yaml|profile-129818.yaml'
 
       - uses: JetBrains/qodana-action@v2026.2
         with:
