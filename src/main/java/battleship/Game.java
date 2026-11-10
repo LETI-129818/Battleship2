@@ -4,6 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import org.apache.commons.lang3.time.StopWatch;
+import java.util.concurrent.TimeUnit;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.SwingUtilities;
+import java.awt.GraphicsEnvironment;
 import java.util.*;
 
 public class Game implements IGame
@@ -40,6 +48,16 @@ public class Game implements IGame
 
 		printBoardFrame(map);
 
+		// Atualiza a interface gráfica apenas se existir ambiente gráfico disponível
+		if (!GraphicsEnvironment.isHeadless()) {
+			SwingUtilities.invokeLater(() -> {
+				BoardView view = BoardView.getInstance();
+				if (view != null) {
+					view.updateFromMap(map);
+				}
+			});
+		}
+
 		if (showLegend) {
 			System.out.println("          LEGENDA");
 			System.out.println("'" + SHIP_MARKER + "'->navio, '" + SHIP_ADJACENT_MARKER + "'->adjacente a navio, '" + EMPTY_MARKER + "'->água");
@@ -47,6 +65,8 @@ public class Game implements IGame
 		}
 		System.out.println();
 	}
+
+
 
 	private static void printShips(IFleet fleet, char[][] map) {
 		for (IShip ship : fleet.getShips()) {
@@ -144,6 +164,22 @@ public class Game implements IGame
 
 		// Retornar o JSON
 		return jsonString;
+	}
+
+	/**
+	 * Guarda a string JSON das jogadas num ficheiro de texto (jogadas.json).
+	 *
+	 * @param jsonString A string JSON com os dados das jogadas.
+	 */
+	public static void saveJsonToFile(String jsonString) {
+		File file = new File("jogadas.json");
+		try (FileWriter writer = new FileWriter(file, true)) { // 'true' para acrescentar ao ficheiro existente
+			writer.write(jsonString);
+			writer.write(System.lineSeparator());
+			System.out.println("Jogada gravada em ficheiro com sucesso!");
+		} catch (IOException e) {
+			System.err.println("Erro ao guardar jogada no ficheiro: " + e.getMessage());
+		}
 	}
 
 	//------------------------------------------------------------------
@@ -264,9 +300,11 @@ public class Game implements IGame
 
 		this.fireShots(shots);
 
+		String json = Game.jsonShots(shots);
+		saveJsonToFile(json);
+
 		return Game.jsonShots(shots);
 	}
-
 
 	/**
 	 * Reads and processes the enemy fire input from the specified scanner.
@@ -281,7 +319,7 @@ public class Game implements IGame
 	 *                                  incorrectly formatted, or do not match the
 	 *                                  required number of shots (NUMBER_SHOTS).
 	 */
-	public String readEnemyFire(Scanner in) {
+	public void readEnemyFire(Scanner in) {
 
 		assert in != null;
 
@@ -316,7 +354,7 @@ public class Game implements IGame
 
 		this.fireShots(shots);
 
-		return Game.jsonShots(shots);
+		Game.jsonShots(shots);
 	}
 
 	/**
@@ -348,13 +386,20 @@ public class Game implements IGame
 
 		Move move = new Move(moveNumber, shots, shotResults);
 
-//		System.out.println(move);
-
 		move.processEnemyFire(true);
 
 		alienMoves.add(move);
 
 		moveNumber++;
+		if (getRemainingShips() == 0 && !scoreRecorded) {
+			scoreRecorded = true;
+			stopWatch.stop();
+			new Scoreboard().add(playerName,
+					alienMoves.size(),
+					alienMoves.size() * NUMBER_SHOTS,
+					stopWatch.getTime(TimeUnit.SECONDS));
+			System.out.println("Resultado registado no scoreboard!");
+}
 	}
 
 	/**
@@ -447,9 +492,16 @@ public class Game implements IGame
 	}
 
 	public void over() {
-			System.out.println();
-			System.out.println("+--------------------------------------------------------------+");
-			System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
-			System.out.println("+--------------------------------------------------------------+");
+		System.out.println();
+		System.out.println("+--------------------------------------------------------------+");
+		System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
+		System.out.println("+--------------------------------------------------------------+");
+	}
+	private final StopWatch stopWatch = StopWatch.createStarted();
+	private boolean scoreRecorded = false;
+	private String playerName = System.getProperty("user.name");
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 }
