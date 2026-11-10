@@ -1,9 +1,15 @@
-# 129818-Inês Aleixo
+
+# 129818 - Inês Aleixo
 version: "1.0"
+
 linter: jetbrains/qodana-jvm:2026.2
-projectJDK: 21
+
+jdk:
+  version: "21"
+
 profile:
-path: qodana/profiles/profile-129818.yaml
+  path: qodana/profiles/profile-129818.yaml
+
 failureConditions:
-severityThresholds:
-any: 0
+  severityThresholds:
+    any: 0
