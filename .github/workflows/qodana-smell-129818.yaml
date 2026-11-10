@@ -1,12 +1,10 @@
 # 129818 - Inês Aleixo
-name: Qodana smell gate 129818
+name: Qodana smell gate Duplicated Code
 
 on:
-  pull_request:
   push:
-    branches:
-      - main
-      - 129818-feature-envy
+    branches: [ main ]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -19,18 +17,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
-      - name: Detect Feature Envy
-        uses: JetBrains/qodana-action@v2026.2.2
+      - uses: JetBrains/qodana-action@v2026.2
         with:
           args: --config qodana-129818.yaml
           use-annotations: true
           post-pr-comment: true
-          pr-mode: false
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_2116003151 }}
+          upload-result: true
+          pr-mode: ${{ github.event_name == 'pull_request' }}

@@ -1,9 +1,11 @@
-# 129818 - Inês Aleixo
-version: "1.0"
+# 129818 - Nome do Aluno
 profile:
   base:
     name: empty
+
   inspections:
-    - inspection: ClassCoupling
+    - inspection: DuplicatedCode
       enabled: true
       severity: WARNING
+      options:
+        restrictedDuplicateScope: Everywhere
