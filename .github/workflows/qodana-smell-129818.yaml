@@ -1,14 +1,10 @@
-
-
-name: Qodana Feature Envy 129818
+# 129818 - Inês Aleixo
+name: Qodana smell gate 129818
 
 on:
   pull_request:
-
   push:
-    branches:
-      - main
-
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -21,13 +17,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
-      - uses: JetBrains/qodana-action@v2026.2.2
+      - name: Detect Feature Envy
+        uses: JetBrains/qodana-action@v2026.2.2
         with:
-          args: --config qodana-12345.yaml
+          args: --config qodana-129818.yaml
           use-annotations: true
           post-pr-comment: true
+          pr-mode: false
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_2116003151 }}
