@@ -1,10 +1,9 @@
 # 129818 - Inês Aleixo
 version: "1.0"
-
 profile:
   base:
     name: empty
   inspections:
-    - inspection: FeatureEnvy
+    - inspection: ClassCoupling
       enabled: true
       severity: WARNING
