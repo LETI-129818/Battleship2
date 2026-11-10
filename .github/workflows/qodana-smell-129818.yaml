@@ -23,9 +23,27 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
 
+      - name: Check profile location
+        run: |
+          echo "=== QODANA DIRECTORY ==="
+          ls -la .qodana
+
+          echo "=== PROFILE FILES ==="
+          find .qodana -type f -print
+
+          echo "=== GIT TRACKED PROFILE ==="
+          git ls-files | grep 'profile-129818' || true
+
+          echo "=== CHECK EXPECTED FILE ==="
+          if [ -f .qodana/profiles/profile-129818.yaml ]; then
+            echo "PROFILE EXISTS"
+          else
+            echo "PROFILE DOES NOT EXIST"
+          fi
+
       - uses: JetBrains/qodana-action@v2026.2
         with:
-          args: --config qodana-129818.yaml --profile-path ${{ github.workspace }}/.qodana/profiles/profile-129818.yaml
+          args: --config qodana-129818.yaml --profile-path .qodana/profiles/profile-129818.yaml
           use-annotations: true
           post-pr-comment: true
           upload-result: true
