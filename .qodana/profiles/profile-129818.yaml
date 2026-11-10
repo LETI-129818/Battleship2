@@ -4,6 +4,6 @@ profile:
     name: empty
 
   inspections:
-    - inspection: DuplicateBranchesInSwitch
+    - inspection: DuplicatedCode
       enabled: true
       severity: WARNING

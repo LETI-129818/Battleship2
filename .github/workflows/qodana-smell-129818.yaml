@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
 
       - uses: JetBrains/qodana-action@v2026.2
@@ -28,4 +28,4 @@ jobs:
           use-annotations: true
           post-pr-comment: true
           upload-result: true
-          pr-mode: ${{ github.event_name == 'pull_request' }}
+          pr-mode: false
