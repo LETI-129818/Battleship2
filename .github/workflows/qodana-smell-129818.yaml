@@ -4,7 +4,9 @@ name: Qodana smell gate 129818
 on:
   pull_request:
   push:
-    branches: [main]
+    branches:
+      - main
+      - 129818-feature-envy
   workflow_dispatch:
 
 permissions:
