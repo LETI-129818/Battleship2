@@ -1,11 +1,9 @@
-# 129818 - Nome do Aluno
+# 129818 - Inês Aleixo
 profile:
   base:
     name: empty
 
   inspections:
-    - inspection: DuplicatedCode
+    - inspection: DuplicateBranchesInSwitch
       enabled: true
       severity: WARNING
-      options:
-        restrictedDuplicateScope: Everywhere
