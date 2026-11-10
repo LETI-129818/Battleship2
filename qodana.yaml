@@ -1,9 +1,0 @@
-# 129818 - Inês Aleixo
-version: "1.0"
-
-linter: qodana-jvm
-
-profile:
-  path: .qodana/profiles/feature-envy.yaml
-
-failThreshold: 0
