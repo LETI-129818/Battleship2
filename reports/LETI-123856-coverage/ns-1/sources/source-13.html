@@ -45,26 +45,26 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">Scoreboard</td>
 <td class="coverageStat">
   <span class="percent">
-    71,4%
+    0%
   </span>
   <span class="absValue">
-    (5/7)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25%
+    0%
   </span>
   <span class="absValue">
-    (2/8)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    33,3%
+    0%
   </span>
   <span class="absValue">
-    (11/33)
+    (0/33)
   </span>
 </td>
 </tr>
@@ -72,18 +72,18 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="name">Scoreboard$1</td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    0%
   </span>
   <span class="absValue">
-    (1/1)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    0%
   </span>
   <span class="absValue">
-    (1/1)
+    (0/1)
   </span>
 </td>
   </tr>
@@ -91,26 +91,26 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    75%
+    0%
   </span>
   <span class="absValue">
-    (6/8)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25%
+    0%
   </span>
   <span class="absValue">
-    (2/8)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    35,3%
+    0%
   </span>
   <span class="absValue">
-    (12/34)
+    (0/34)
   </span>
 </td>
 </tr>
@@ -137,19 +137,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import java.util.List;
 &nbsp;
 &nbsp;public class Scoreboard {
-<b class="fc">&nbsp;    private static final Path FILE = Path.of(&quot;data&quot;, &quot;scoreboard.json&quot;);</b>
-<b class="fc">&nbsp;    private final ObjectMapper mapper = new ObjectMapper();</b>
-<b class="fc">&nbsp;    private final List&lt;ScoreEntry&gt; entries = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;    private static final Path FILE = Path.of(&quot;data&quot;, &quot;scoreboard.json&quot;);</b>
+<b class="nc">&nbsp;    private final ObjectMapper mapper = new ObjectMapper();</b>
+<b class="nc">&nbsp;    private final List&lt;ScoreEntry&gt; entries = new ArrayList&lt;&gt;();</b>
 &nbsp;
-<b class="fc">&nbsp;    public Scoreboard() {</b>
-<b class="fc">&nbsp;        load();</b>
+<b class="nc">&nbsp;    public Scoreboard() {</b>
+<b class="nc">&nbsp;        load();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    /** Regista o resultado de um jogo terminado e grava-o em disco. */
 &nbsp;    public void add(String player, int bursts, int shots, long durationSeconds) {
-<b class="fc">&nbsp;        entries.add(new ScoreEntry(player, LocalDateTime.now().withNano(0).toString(),</b>
+<b class="nc">&nbsp;        entries.add(new ScoreEntry(player, LocalDateTime.now().withNano(0).toString(),</b>
 &nbsp;                bursts, shots, durationSeconds));
-<b class="fc">&nbsp;        save();</b>
+<b class="nc">&nbsp;        save();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    /** Melhores jogos: menos rajadas primeiro, desempate pela menor duração. */
@@ -184,8 +184,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    private void load() {
 &nbsp;        try {
-<b class="pc">&nbsp;            if (Files.exists(FILE) &amp;&amp; Files.size(FILE) &gt; 0) {</b>
-<b class="fc">&nbsp;                entries.addAll(mapper.readValue(FILE.toFile(), new TypeReference&lt;List&lt;ScoreEntry&gt;&gt;() {}));</b>
+<b class="nc">&nbsp;            if (Files.exists(FILE) &amp;&amp; Files.size(FILE) &gt; 0) {</b>
+<b class="nc">&nbsp;                entries.addAll(mapper.readValue(FILE.toFile(), new TypeReference&lt;List&lt;ScoreEntry&gt;&gt;() {}));</b>
 &nbsp;            }
 &nbsp;        } catch (IOException e) {
 <b class="nc">&nbsp;            System.err.println(&quot;Não foi possível ler o scoreboard: &quot; + e.getMessage());</b>
@@ -194,8 +194,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    private void save() {
 &nbsp;        try {
-<b class="fc">&nbsp;            Files.createDirectories(FILE.getParent());</b>
-<b class="fc">&nbsp;            mapper.writerWithDefaultPrettyPrinter().writeValue(FILE.toFile(), entries);</b>
+<b class="nc">&nbsp;            Files.createDirectories(FILE.getParent());</b>
+<b class="nc">&nbsp;            mapper.writerWithDefaultPrettyPrinter().writeValue(FILE.toFile(), entries);</b>
 &nbsp;        } catch (IOException e) {
 <b class="nc">&nbsp;            System.err.println(&quot;Não foi possível gravar o scoreboard: &quot; + e.getMessage());</b>
 &nbsp;        }
@@ -224,7 +224,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2026-11-12 12:40</div>
+    <div style="float:right;">generated on 2026-11-12 13:27</div>
 </div>
 </body>
 </html>
