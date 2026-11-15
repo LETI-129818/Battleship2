@@ -23,12 +23,13 @@ jobs:
           fetch-depth: 0
 
       - name: Qodana Scan
-        uses: JetBrains/qodana-action@v2026.2
+        uses: jetbrains/qodana-jvm-community
         with:
-          args: --linter qodana-jvm-community --save-report
+          pr-mode: false
+          args: --save-report
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_1371499128 }}
-          QODANA_ENDPOINT: https://qodana.cloud
+          QODANA_ENDPOINT: 'https://qodana.cloud'
 
       - name: Enforce max 5 suspicious-indentation errors
         run: |
