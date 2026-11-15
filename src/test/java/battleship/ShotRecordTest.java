@@ -116,3 +116,4 @@ class ShotRecordTest {
         assertEquals("Barca", record.getShipCategory());
     }
 }
+
