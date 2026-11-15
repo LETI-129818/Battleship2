@@ -84,10 +84,10 @@ class ScoreboardTest {
 
             List<ScoreEntry> top = new Scoreboard().top(10);
             assertEquals(1, top.size());
-            assertEquals("Ana", top.get(0).player());
-            assertEquals(5, top.get(0).bursts());
-            assertEquals(15, top.get(0).shots());
-            assertEquals(120, top.get(0).durationSeconds());
+            assertEquals("Ana", top.getFirst().player());
+            assertEquals(5, top.getFirst().bursts());
+            assertEquals(15, top.getFirst().shots());
+            assertEquals(120, top.getFirst().durationSeconds());
         }
     }
 
@@ -101,7 +101,7 @@ class ScoreboardTest {
             Scoreboard sb = new Scoreboard();
             sb.add("Rui", 3, 9, 60);
 
-            String date = sb.top(1).get(0).date();
+            String date = sb.top(1).getFirst().date();
             assertNotNull(date);
             assertFalse(date.contains("."), "A data não deve ter nanossegundos");
         }
@@ -144,7 +144,7 @@ class ScoreboardTest {
             sb.add("Lento", 5, 15, 300);
             sb.add("Rapido", 5, 15, 60);
 
-            assertEquals("Rapido", sb.top(2).get(0).player());
+            assertEquals("Rapido", sb.top(2).getFirst().player());
             assertEquals("Lento", sb.top(2).get(1).player());
         }
 
