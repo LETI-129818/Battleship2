@@ -48,6 +48,8 @@ class IPositionTest {
 
     @Nested
     @DisplayName("Igualdade")
+    @SuppressWarnings({"EqualsWithItself", "EqualsBetweenInconvertibleTypes",
+            "ConstantValue", "SimplifiableAssertion", "SimplifiableJUnitAssertion"})
     class Equality {
 
         @Test
