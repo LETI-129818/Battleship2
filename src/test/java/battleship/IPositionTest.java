@@ -53,7 +53,7 @@ class IPositionTest {
         @Test
         @DisplayName("Uma posição é igual a si própria")
         void equalsItself() {
-            assertEquals(pos, pos);
+            assertTrue(pos.equals(pos));
         }
 
         @Test
@@ -72,8 +72,8 @@ class IPositionTest {
         @Test
         @DisplayName("Uma posição não é igual a um objeto de outro tipo nem a null")
         void notEqualsOtherType() {
-            assertNotEquals(pos, "C4");
-            assertNotEquals(pos, null);
+            assertFalse(pos.equals("C4"));
+            assertFalse(pos.equals(null));
         }
     }
 
