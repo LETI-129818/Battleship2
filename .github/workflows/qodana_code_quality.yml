@@ -8,6 +8,7 @@ on:
     branches:
       - main
       - 'releases/*'
+      - 'UnitTests_129818'
 
 jobs:
   qodana:
