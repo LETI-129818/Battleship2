@@ -163,4 +163,28 @@ class IPositionTest {
             assertFalse(pos.isOccupied());
         }
     }
+    @Nested
+    @DisplayName("Métodos da implementação Position")
+    class PositionSpecific {
+
+        @Test
+        @DisplayName("toString devolve a notação clássica (C4)")
+        void toStringClassic() {
+            assertEquals("C4", pos.toString());
+        }
+
+        @Test
+        @DisplayName("Posições iguais têm o mesmo hashCode")
+        void hashCodeConsistentWithEquals() {
+            assertEquals(new Position(2, 3).hashCode(), pos.hashCode());
+        }
+
+        @Test
+        @DisplayName("randomPosition devolve sempre uma posição dentro do tabuleiro")
+        void randomPositionInside() {
+            for (int i = 0; i < 100; i++) {
+                assertTrue(Position.randomPosition().isInside());
+            }
+        }
+    }
 }
