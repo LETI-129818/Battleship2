@@ -23,7 +23,7 @@ public interface IGame
 	 *
 	 * @param in the {@code Scanner} to read the input from, which provides the details of the enemy fire
 	 */
-	String readEnemyFire(Scanner in);
+	void readEnemyFire(Scanner in);
 
 	/**
 	 * Fires a set of shots in a given move.
