@@ -17,7 +17,6 @@ public interface IGame
 	 * @return a {@code String} indicating the result of the firing action, such as details about a hit, a miss, or other outcomes
 	 */
 	String randomEnemyFire();
-
 	/**
 	 * Reads the result of an enemy firing action from input and interprets it.
 	 *
