@@ -3,6 +3,8 @@
  */
 package battleship;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +25,7 @@ public class Fleet implements IFleet
 		IFleet randomFleet = new Fleet();
 
 		// Define the types of ships to be added
-		String[] shipTypes =
-					{"galeao",                           // 1 galleon
-				 	"fragata",                           // 1 frigate
- 				 	"nau", "nau",                        // 2 carracks
-					"caravela", "caravela", "caravela",  // 3 caravels
-					"barca", "barca", "barca", "barca"}; // 4 barges
+		String[] shipTypes = getShipTypes();
 
 		int fleetSize = 0;
 
@@ -45,8 +42,18 @@ public class Fleet implements IFleet
 		return randomFleet;
 	}
 
+	private static String @NotNull [] getShipTypes() {
+		String[] shipTypes =
+				{"galeao",                           // 1 galleon
+						"fragata",                           // 1 frigate
+						"nau", "nau",                        // 2 carracks
+						"caravela", "caravela", "caravela",  // 3 caravels
+						"barca", "barca", "barca", "barca"}; // 4 barges
+		return shipTypes;
+	}
 
-    // -----------------------------------------------------
+
+	// -----------------------------------------------------
 
 	/**
 	 * The Ships.
