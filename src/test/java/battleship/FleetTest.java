@@ -163,10 +163,11 @@ import java.util.ArrayList;
 		 * Cyclomatic Complexity: 2
 		 */
 
+
 		@Test
 		@DisplayName("Test collision detection between ships")
 		void testColisionRisk() throws Exception {
-			var method = Fleet.class.getDeclaredMethod("colisionRisk", IShip.class);
+			var method = Fleet.class.getDeclaredMethod("collisionRisk", IShip.class);
 			method.setAccessible(true);
 
 			IShip ship1 = new Barge(Compass.NORTH, new Position(1, 1));
@@ -175,14 +176,17 @@ import java.util.ArrayList;
 			assertTrue(fleet.addShip(ship1),
 					"Error: First ship should be added successfully.");
 
-			assertFalse((Boolean) method.invoke(fleet, ship2),
-					"Error: Overlapping ships should not be allowed.");
+			// Existe colisão, logo collisionRisk deve devolver true
+			assertTrue((Boolean) method.invoke(fleet, ship2),
+					"Error: Overlapping ships should have collision risk.");
 
-			assertTrue((Boolean) method.invoke(
+			// Não existe colisão, logo collisionRisk deve devolver false
+			assertFalse((Boolean) method.invoke(
 							fleet,
 							new Barge(Compass.NORTH, new Position(5, 5))),
-					"Error: Ships without collision risk should be allowed.");
+					"Error: Ships without overlap should have no collision risk.");
 		}
+
 
 
 	/**
