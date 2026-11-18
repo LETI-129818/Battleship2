@@ -132,6 +132,14 @@ mvn test
 
 ---
 
+## ⚙️ Continuous Integration (GitHub Actions)
+O workflow `.github/workflows/maven.yml` ("Java CI with Maven") compila o projeto e executa
+a bateria de testes JUnit (`mvn -B package`) com JDK 21:
+- em cada **push**, para qualquer ramo (ex.: `UnitTests_XXXXXX`);
+- em cada **pull request** para o `main`.
+  Se algum teste falhar, o workflow fica a vermelho e o PR não deve ser aceite.
+  Resultados: separador **Actions** do repositório.
+
 ## 🤝 Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
 
