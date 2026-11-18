@@ -1,3 +1,4 @@
+
 name: Qodana
 
 on:
@@ -7,6 +8,7 @@ on:
     branches:
       - main
       - 'releases/*'
+      - 'UnitTests_129818'
 
 jobs:
   qodana:
@@ -23,10 +25,9 @@ jobs:
           fetch-depth: 0
 
       - name: Qodana Scan
-        uses: jetbrains/qodana-jvm-community
+        uses: JetBrains/qodana-action@v2026.2
         with:
-          pr-mode: false
-          args: --save-report
+          args: --linter qodana-jvm-community
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_1371499128 }}
           QODANA_ENDPOINT: 'https://qodana.cloud'
@@ -52,8 +53,8 @@ jobs:
           echo "Suspicious indentation errors: $SuspiciousIndentCount"
 
           if [ "$SuspiciousIndentCount" -gt 5 ]; then
-            echo "❌ Too many suspicious-indentation errors (>5)"
+            echo "Too many suspicious-indentation errors (>5)"
             exit 1
           fi
 
-          echo "✔️ Suspicious-indentation threshold satisfied"
+          echo "Suspicious-indentation threshold satisfied"
