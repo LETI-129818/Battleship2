@@ -132,6 +132,14 @@ mvn test
 
 ---
 
+## ⚙️ Continuous Integration (GitHub Actions)
+O workflow `.github/workflows/maven.yml` ("Java CI with Maven") compila o projeto e executa
+a bateria de testes JUnit (`mvn -B package`) com JDK 21:
+- em cada **push**, para qualquer ramo (ex.: `UnitTests_XXXXXX`);
+- em cada **pull request** para o `main`.
+  Se algum teste falhar, o workflow fica a vermelho e o PR não deve ser aceite.
+  Resultados: separador **Actions** do repositório.
+
 ## 🤝 Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
 
@@ -153,9 +161,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Playing vs AI - https://youtu.be/qXBSlr2SM24
 
 Features Showcase and game demonstration - https://youtu.be/J7IYDGamVSo
-
----
-
-| Cheiro (Fowler) | Inspeção no IDE | ID da inspeção | Métrica / limiar | Limitações |
-|---|---|---|---|---|
-| *Feature Envy* | Feature envy | `FeatureEnvy` | Número de chamadas a métodos de outra classe; limiar ≥ 3 chamadas. | Não permite reproduzir a estratégia quantitativa completa do livro, nomeadamente a combinação das métricas ATFD, LAA e FDP. |

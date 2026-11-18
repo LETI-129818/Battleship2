@@ -162,6 +162,7 @@ import java.util.ArrayList;
 		 * Test for private method colisionRisk.
 		 * Cyclomatic Complexity: 2
 		 */
+
 		@Test
 		@DisplayName("Test collision detection between ships")
 		void testColisionRisk() throws Exception {
@@ -183,7 +184,8 @@ import java.util.ArrayList;
 					"Error: Ships without collision risk should be allowed.");
 		}
 
-		/**
+
+	/**
 		 * Test for the printStatus method.
 		 * Cyclomatic Complexity: 1
 		 */
