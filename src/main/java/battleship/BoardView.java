@@ -49,12 +49,7 @@ public class BoardView extends JFrame {
         boardPanel.add(new JLabel("", SwingConstants.CENTER));
 
         // Cabeçalhos das Colunas (1 a 10)
-        for (int c = 1; c <= SIZE; c++) {
-            JLabel lblCol = new JLabel(String.valueOf(c), SwingConstants.CENTER);
-            lblCol.setFont(new Font("SansSerif", Font.BOLD, 13));
-            lblCol.setForeground(HEADER_TEXT_COLOR);
-            boardPanel.add(lblCol);
-        }
+        addColumnHeaders(boardPanel);
 
         // Construção das linhas com identificador de A a J e respetivos botões
         for (int r = 0; r < SIZE; r++) {
@@ -75,6 +70,15 @@ public class BoardView extends JFrame {
         }
 
         add(boardPanel, BorderLayout.CENTER);
+    }
+
+    private static void addColumnHeaders(JPanel boardPanel) {
+        for (int c = 1; c <= SIZE; c++) {
+            JLabel lblCol = new JLabel(String.valueOf(c), SwingConstants.CENTER);
+            lblCol.setFont(new Font("SansSerif", Font.BOLD, 13));
+            lblCol.setForeground(HEADER_TEXT_COLOR);
+            boardPanel.add(lblCol);
+        }
     }
 
     /**
