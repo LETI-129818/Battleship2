@@ -12,3 +12,5 @@
 | `Game::getRemainingShips` | Data Flow & Redundancy | Inline Variable | 122626 |
 | `Game::repeatedShot` | Feature Envy | Make Static | 122626 |
 | `Game::printBoard` | Naming & Readability | Rename | 122626 |
+| `PdfExporter::exportarJogadasParaPdf` | Data Flow & Redundancy | Introduce Constant | 122626 |
+
