@@ -13,4 +13,4 @@
 | `Game::repeatedShot` | Feature Envy | Make Static | 122626 |
 | `Game::printBoard` | Naming & Readability | Rename | 122626 |
 | `PdfExporter::exportarJogadasParaPdf` | Data Flow & Redundancy | Introduce Constant | 122626 |
-
+| `Ship::category` | Encapsulation & API Design | Encapsulate Fields | 122626 |
