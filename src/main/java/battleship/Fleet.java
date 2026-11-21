@@ -3,6 +3,8 @@
  */
 package battleship;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +25,7 @@ public class Fleet implements IFleet
 		IFleet randomFleet = new Fleet();
 
 		// Define the types of ships to be added
-		String[] shipTypes =
-					{"galeao",                           // 1 galleon
-				 	"fragata",                           // 1 frigate
- 				 	"nau", "nau",                        // 2 carracks
-					"caravela", "caravela", "caravela",  // 3 caravels
-					"barca", "barca", "barca", "barca"}; // 4 barges
+		String[] shipTypes = getShipTypes();
 
 		int fleetSize = 0;
 
@@ -45,8 +42,18 @@ public class Fleet implements IFleet
 		return randomFleet;
 	}
 
+	private static String @NotNull [] getShipTypes() {
+		String[] shipTypes =
+				{"galeao",                           // 1 galleon
+						"fragata",                           // 1 frigate
+						"nau", "nau",                        // 2 carracks
+						"caravela", "caravela", "caravela",  // 3 caravels
+						"barca", "barca", "barca", "barca"}; // 4 barges
+		return shipTypes;
+	}
 
-    // -----------------------------------------------------
+
+	// -----------------------------------------------------
 
 	/**
 	 * The Ships.
@@ -90,7 +97,7 @@ public class Fleet implements IFleet
 		assert s != null;
 
 		boolean result = false;
-		if ((ships.size() <= FLEET_SIZE) && (s.isInsideBoard()) && (!colisionRisk(s)))
+		if ((ships.size() <= FLEET_SIZE) && (s.isInsideBoard()) && (!collisionRisk(s)))
 		{
 			ships.add(s);
 			result = true;
@@ -192,7 +199,7 @@ public class Fleet implements IFleet
 	 * @param s the s
 	 * @return the boolean
 	 */
-	private boolean colisionRisk(IShip s)
+	private boolean collisionRisk(IShip s)
     {
 		assert s != null;
 
@@ -207,13 +214,13 @@ public class Fleet implements IFleet
 	/**
 	 * This operation prints all the given ships
 	 *
-	 * @param ships The list of ships
+	 * @param shipsToPrint The list of ships
 	 */
-	public void printShips(List<IShip> ships)
+	public void printShips(List<IShip> shipsToPrint)
 	{
-		assert ships != null;
+		assert shipsToPrint != null;
 
-		for (IShip ship : ships)
+		for (IShip ship : shipsToPrint)
 			System.out.println(ship);
 	}
 

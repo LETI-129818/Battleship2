@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 
 public class BoardView extends JFrame {
     private static final int SIZE = 10;
+    public static final Color HEADER_TEXT_COLOR = new Color(180, 180, 180);
     private final JButton[][] gridButtons = new JButton[SIZE][SIZE];
     private static final String[] ROWS = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
@@ -48,18 +49,13 @@ public class BoardView extends JFrame {
         boardPanel.add(new JLabel("", SwingConstants.CENTER));
 
         // Cabeçalhos das Colunas (1 a 10)
-        for (int c = 1; c <= SIZE; c++) {
-            JLabel lblCol = new JLabel(String.valueOf(c), SwingConstants.CENTER);
-            lblCol.setFont(new Font("SansSerif", Font.BOLD, 13));
-            lblCol.setForeground(new Color(180, 180, 180));
-            boardPanel.add(lblCol);
-        }
+        addColumnHeaders(boardPanel);
 
         // Construção das linhas com identificador de A a J e respetivos botões
         for (int r = 0; r < SIZE; r++) {
             JLabel lblRow = new JLabel(ROWS[r], SwingConstants.CENTER);
             lblRow.setFont(new Font("SansSerif", Font.BOLD, 13));
-            lblRow.setForeground(new Color(180, 180, 180));
+            lblRow.setForeground(HEADER_TEXT_COLOR);
             boardPanel.add(lblRow);
 
             for (int c = 0; c < SIZE; c++) {
@@ -74,6 +70,15 @@ public class BoardView extends JFrame {
         }
 
         add(boardPanel, BorderLayout.CENTER);
+    }
+
+    private static void addColumnHeaders(JPanel boardPanel) {
+        for (int c = 1; c <= SIZE; c++) {
+            JLabel lblCol = new JLabel(String.valueOf(c), SwingConstants.CENTER);
+            lblCol.setFont(new Font("SansSerif", Font.BOLD, 13));
+            lblCol.setForeground(HEADER_TEXT_COLOR);
+            boardPanel.add(lblCol);
+        }
     }
 
     /**
