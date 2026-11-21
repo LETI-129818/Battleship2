@@ -1,0 +1,10 @@
+
+# 129818 - Inês Aleixo
+
+profile:
+  base:
+    name: empty
+
+  inspections:
+    - inspection: FeatureEnvy
+      enabled: true
