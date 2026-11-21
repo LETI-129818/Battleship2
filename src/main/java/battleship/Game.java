@@ -424,7 +424,7 @@ public class Game implements IGame
 			return new ShotResult(false, false, null, false);
 		}
 
-		if (isRepeated || repeatedShot(pos)) {
+		if (isRepeated || repeatedShot(alienMoves, pos)) {
 			countRepeatedShots++;
 			return new ShotResult(true, true, null, false);
 		}
@@ -473,7 +473,7 @@ public class Game implements IGame
         return myFleet.getFloatingShips().size();
 	}
 
-	public boolean repeatedShot(IPosition pos)
+	public static boolean repeatedShot(List<IMove> alienMoves, IPosition pos)
 	{
 		assert pos != null;
 
