@@ -58,14 +58,17 @@ public class Game implements IGame
 			});
 		}
 
+		printLegend(showLegend);
+		System.out.println();
+	}
+
+	private static void printLegend(boolean showLegend) {
 		if (showLegend) {
 			System.out.println("          LEGENDA");
 			System.out.println("'" + SHIP_MARKER + "'->navio, '" + SHIP_ADJACENT_MARKER + "'->adjacente a navio, '" + EMPTY_MARKER + "'->água");
 			System.out.println("'" + SHOT_SHIP_MARKER + "'->Tiro certeiro, '" + SHOT_WATER_MARKER + "'->Tiro na água");
 		}
-		System.out.println();
 	}
-
 
 
 	private static void printShips(IFleet fleet, char[][] map) {
@@ -366,7 +369,7 @@ public class Game implements IGame
 	 * @param shots a list of positions representing the locations to fire shots at.
 	 *              The positions should be unique and valid within the bounds of the game board.
 	 *              The size of the list must be equal to {@code NUMBER_SHOTS}.
-	 * @throws IllegalArgumentException if the list of shots is null, contains an invalid
+	 * @throws IllegalAnnrgumentException if the list of shots is null, contains an invalid
 	 *                                  number of positions, or includes duplicate positions.
 	 */
 	public void fireShots(List<IPosition> shots)

@@ -8,3 +8,4 @@
 | `Compass::randomBearing()` | Unnecessary Temporary Variable | Inline Variable | 123856 |
 | `Fleet::printShips()` | Poor Naming | Change Signature | 123856 |
 | `BoardView::BoardView()` | Long Method | Extract Method | 123856 |
+| `Game::printBoard` | Long Method | Extract Method | 122626 |
