@@ -112,9 +112,7 @@ public class Move implements IMove {
 				// Atualizar lógica para contar múltiplos barcos afundados do mesmo tipo
 				if (!sunkBoatsCount.isEmpty()) {
 					for (Map.Entry<String, Integer> entry : sunkBoatsCount.entrySet()) {
-						String boatName = entry.getKey();
-						int count = entry.getValue();
-						output.append(count).append(" ").append(boatName).append(count > 1 ? "s" : "").append(" ao fundo").append(" + ");
+                        output.append((int) entry.getValue()).append(" ").append(entry.getKey()).append(entry.getValue() > 1 ? "s" : "").append(" ao fundo").append(" + ");
 					}
 				}
 
@@ -186,6 +184,17 @@ public class Move implements IMove {
 		// Serializar o JSON utilizando Jackson
 		String jsonString;
 
+		jsonString = toJson(response);
+
+		System.out.println(jsonString);
+		System.out.println();
+
+		// Retornar o JSON
+		return jsonString;
+	}
+
+	private static String toJson(Map<String, Object> response) {
+		String jsonString;
 		// Serializar os tiros gerados em JSON usando a biblioteca Jackson
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -195,11 +204,6 @@ public class Move implements IMove {
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException("Erro ao serializar o JSON dos resultados da jogada", e);
 		}
-
-		System.out.println(jsonString);
-		System.out.println();
-
-		// Retornar o JSON
 		return jsonString;
 	}
 }
