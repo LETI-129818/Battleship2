@@ -55,14 +55,14 @@ public class Scoreboard {
         System.out.println(StringUtils.rightPad("#", RANK_WIDTH) + StringUtils.rightPad("Jogador", PLAYER_WIDTH)
                 + StringUtils.rightPad("Data", DATE_WIDTH) + StringUtils.leftPad("Rajadas", BURSTS_WIDTH)
                 + StringUtils.leftPad("Tiros", SHOTS_WIDTH) + StringUtils.leftPad("Tempo", TIME_WIDTH));
-        int pos = 1;
-        for (ScoreEntry e : best) {
-            System.out.println(StringUtils.rightPad(String.valueOf(pos++), RANK_WIDTH)
-                    + StringUtils.rightPad(e.player(), PLAYER_WIDTH)
-                    + StringUtils.rightPad(e.date().replace('T', ' '), DATE_WIDTH)
-                    + StringUtils.leftPad(String.valueOf(e.bursts()), BURSTS_WIDTH)
-                    + StringUtils.leftPad(String.valueOf(e.shots()), SHOTS_WIDTH)
-                    + StringUtils.leftPad(DurationFormatUtils.formatDuration(e.durationSeconds() * 1000, "HH:mm:ss"), TIME_WIDTH));
+        int rank = 1;
+        for (ScoreEntry entry : best) {
+            System.out.println(StringUtils.rightPad(String.valueOf(rank++), RANK_WIDTH)
+                    + StringUtils.rightPad(entry.player(), PLAYER_WIDTH)
+                    + StringUtils.rightPad(entry.date().replace('T', ' '), DATE_WIDTH)
+                    + StringUtils.leftPad(String.valueOf(entry.bursts()), BURSTS_WIDTH)
+                    + StringUtils.leftPad(String.valueOf(entry.shots()), SHOTS_WIDTH)
+                    + StringUtils.leftPad(DurationFormatUtils.formatDuration(entry.durationSeconds() * 1000, "HH:mm:ss"), TIME_WIDTH));
         }
     }
 
