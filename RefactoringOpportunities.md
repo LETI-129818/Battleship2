@@ -14,3 +14,8 @@
 | `Game::printBoard` | Naming & Readability | Rename | 122626 |
 | `PdfExporter::exportarJogadasParaPdf` | Data Flow & Redundancy | Introduce Constant | 122626 |
 | `Ship::category` | Encapsulation & API Design | Encapsulate Fields | 122626 |
+| `Move::processEnemyFire()` | Long Method | Extract Method | 113183 |
+| `Move::processEnemyFire()` | Unnecessary Temporary Variable | Inline Variable | 113183 |
+| `Scoreboard::print()` | Magic Numbers | Introduce Constant | 113183 |
+| `Scoreboard::print()` | Poor Naming | Rename | 113183 |
+| `GameDatabase::loadShots()` | Message Chains | Introduce Variable | 113183 |
