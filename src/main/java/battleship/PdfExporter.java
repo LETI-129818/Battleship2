@@ -11,6 +11,8 @@ import java.util.List;
 
 public class PdfExporter {
 
+    public static final String HISTORICO_DE_JOGADAS_BATALHA_NAVAL = "Historico de Jogadas - Batalha Naval";
+
     public static void exportarJogadasParaPdf(List<String> historicoJogadas, String nomeFicheiro) {
         // Cria um novo documento PDF
         try (PDDocument document = new PDDocument()) {
@@ -23,7 +25,7 @@ public class PdfExporter {
                 // Título do documento
                 contentStream.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD), 16);
                 contentStream.newLineAtOffset(50, 750);
-                contentStream.showText("Historico de Jogadas - Batalha Naval");
+                contentStream.showText(HISTORICO_DE_JOGADAS_BATALHA_NAVAL);
                 contentStream.endText();
 
                 contentStream.beginText();

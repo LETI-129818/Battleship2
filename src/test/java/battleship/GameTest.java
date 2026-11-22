@@ -70,13 +70,13 @@ public class GameTest {
 		List<IPosition> positions = List.of(new Position(2, 3), new Position(2, 4), new Position(2, 5));
 		game.fireShots(positions);
 		Position position = new Position(2, 3);
-		assertTrue(game.repeatedShot(position), "Position (2,3) should be marked as repeated after firing.");
+		assertTrue(Game.repeatedShot(game.getAlienMoves(), position), "Position (2,3) should be marked as repeated after firing.");
 	}
 
 	@Test
 	void repeatedShot2() {
 		Position position = new Position(2, 3);
-		assertFalse(game.repeatedShot(position), "Position (2,3) should not be marked as repeated before firing.");
+		assertFalse(Game.repeatedShot(game.getAlienMoves(), position), "Position (2,3) should not be marked as repeated before firing.");
 	}
 
 	@Test
