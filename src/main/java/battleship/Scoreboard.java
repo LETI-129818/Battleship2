@@ -15,6 +15,13 @@ import java.util.List;
 
 public class Scoreboard {
     private static final Path FILE = Path.of("data", "scoreboard.json");
+    public static final int PLAYER_WIDTH = 16;
+    public static final int RANK_WIDTH = 4;
+    public static final int DATE_WIDTH = 20;
+    public static final int BURSTS_WIDTH = 8;
+    public static final int SHOTS_WIDTH = 7;
+    public static final int TIME_WIDTH = 10;
+    public static final int TABLE_WIDTH = 66;
     private final ObjectMapper mapper = new ObjectMapper();
     private final List<ScoreEntry> entries = new ArrayList<>();
 
@@ -44,18 +51,18 @@ public class Scoreboard {
             System.out.println("Ainda não há jogos registados.");
             return;
         }
-        System.out.println(StringUtils.center(" SCOREBOARD - TOP " + n + " ", 66, '='));
-        System.out.println(StringUtils.rightPad("#", 4) + StringUtils.rightPad("Jogador", 16)
-                + StringUtils.rightPad("Data", 20) + StringUtils.leftPad("Rajadas", 8)
-                + StringUtils.leftPad("Tiros", 7) + StringUtils.leftPad("Tempo", 10));
+        System.out.println(StringUtils.center(" SCOREBOARD - TOP " + n + " ", TABLE_WIDTH, '='));
+        System.out.println(StringUtils.rightPad("#", RANK_WIDTH) + StringUtils.rightPad("Jogador", PLAYER_WIDTH)
+                + StringUtils.rightPad("Data", DATE_WIDTH) + StringUtils.leftPad("Rajadas", BURSTS_WIDTH)
+                + StringUtils.leftPad("Tiros", SHOTS_WIDTH) + StringUtils.leftPad("Tempo", TIME_WIDTH));
         int pos = 1;
         for (ScoreEntry e : best) {
-            System.out.println(StringUtils.rightPad(String.valueOf(pos++), 4)
-                    + StringUtils.rightPad(e.player(), 16)
-                    + StringUtils.rightPad(e.date().replace('T', ' '), 20)
-                    + StringUtils.leftPad(String.valueOf(e.bursts()), 8)
-                    + StringUtils.leftPad(String.valueOf(e.shots()), 7)
-                    + StringUtils.leftPad(DurationFormatUtils.formatDuration(e.durationSeconds() * 1000, "HH:mm:ss"), 10));
+            System.out.println(StringUtils.rightPad(String.valueOf(pos++), RANK_WIDTH)
+                    + StringUtils.rightPad(e.player(), PLAYER_WIDTH)
+                    + StringUtils.rightPad(e.date().replace('T', ' '), DATE_WIDTH)
+                    + StringUtils.leftPad(String.valueOf(e.bursts()), BURSTS_WIDTH)
+                    + StringUtils.leftPad(String.valueOf(e.shots()), SHOTS_WIDTH)
+                    + StringUtils.leftPad(DurationFormatUtils.formatDuration(e.durationSeconds() * 1000, "HH:mm:ss"), TIME_WIDTH));
         }
     }
 
