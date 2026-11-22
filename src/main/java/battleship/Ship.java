@@ -109,10 +109,7 @@ public abstract class Ship implements IShip
 		this.setCategory(Objects.requireNonNull(category, "Ship's category must not be null"));
 		this.bearing = Objects.requireNonNull(bearing, "Ship's bearing must not be null");
 		this.pos = Objects.requireNonNull(pos, "Ship's position must not be null");
-	
-		this.setCategory(category);
-		this.bearing = bearing;
-		this.pos = pos;
+
 		this.size = size;
 
 		positions = new ArrayList<>();
@@ -157,9 +154,12 @@ public abstract class Ship implements IShip
 		for (IPosition position : getPositions())
 		{
 			List<IPosition> adjacents = position.adjacentPositions();
-			for (IPosition adj : adjacents)
-				if (!getPositions().contains(adj) && !adjacentPositions.contains(adj))
+			for (IPosition adj : adjacents) {
+				boolean notOccupiedByShip = !getPositions().contains(adj);
+				boolean notAlreadyAdded = !adjacentPositions.contains(adj);
+				if (notOccupiedByShip && notAlreadyAdded)
 					adjacentPositions.add(adj);
+			}
 		}
 		return adjacentPositions;
 	}
@@ -378,8 +378,10 @@ public abstract class Ship implements IShip
 	{
 		assert this != null;
 
-		return (getLeftMostPos() >= 0 && getRightMostPos() <= Game.BOARD_SIZE - 1 && getTopMostPos() >= 0
-				&& getBottomMostPos() <= Game.BOARD_SIZE - 1);
+		boolean horizontalBounds = getLeftMostPos() >= 0 && getRightMostPos() <= Game.BOARD_SIZE - 1;
+		boolean verticalBounds = getTopMostPos() >= 0
+				&& getBottomMostPos() <= Game.BOARD_SIZE - 1;
+		return (horizontalBounds && verticalBounds);
 	}
 	/**
 	 * Shoot.
