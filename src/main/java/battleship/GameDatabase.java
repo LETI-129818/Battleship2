@@ -2,6 +2,7 @@ package battleship;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.type.CollectionType;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +47,8 @@ public class GameDatabase {
             return new ArrayList<>();
         }
         try {
-            return mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(List.class, battleship.ShotRecord.class));
+            CollectionType shotListType = mapper.getTypeFactory().constructCollectionType(List.class, ShotRecord.class);
+            return mapper.readValue(file, shotListType);
         } catch (IOException e) {
             System.err.println("Erro ao carregar jogadas do ficheiro: " + e.getMessage());
             return new ArrayList<>();
