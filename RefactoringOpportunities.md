@@ -19,3 +19,8 @@
 | `Scoreboard::print()` | Magic Numbers | Introduce Constant | 113183 |
 | `Scoreboard::print()` | Poor Naming | Rename | 113183 |
 | `GameDatabase::loadShots()` | Message Chains | Introduce Variable | 113183 |
+| Frigate::Frigate | Duplicated Code | Extract Method | 129818 |
+| Ship::isInsideBoard | Complex Condition | Decompose Conditional | 129818 |
+| Ship::Ship | Data Flow & Redundancy | Remove Redundant Assignment | 129818 |
+| Ship::getAdjacentPositions | Complex Condition | Introduce Variable | 129818 |
+| Tasks::buildFleet() | Unnecessary Temporary Variable | Inline Variable | 129818 |
